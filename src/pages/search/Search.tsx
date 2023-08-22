@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 import InfoCard from "src/components/cards/InfoCard";
 import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
+import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
+import { useEffect, useMemo, useState } from "react";
+import MyMap from "src/components/map/MyMap";
 
 const Search = () => {
   const location = useLocation();
@@ -19,8 +22,6 @@ const Search = () => {
   const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
   const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
-  const fromDate = format(new Date(startDate), "yyy/MM/dd");
-  const toDate = format(new Date(endDate), "yyy/MM/dd");
 
   const { data } = useSearchResults(startDate, endDate, searchLocation, region);
   const searchResults: PropertyType[] = data?.data;
@@ -42,6 +43,10 @@ const Search = () => {
           <p className="button">Type of Place</p>
           <p className="button">Rooms and Beds</p>
           <p className="button">More Filters</p>
+        </div>
+
+        <div className="wrapper h-96">
+          <MyMap data={data} />
         </div>
 
         <div className="flex flex-col">

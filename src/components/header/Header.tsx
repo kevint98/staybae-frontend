@@ -1,30 +1,30 @@
-import { Link, useNavigate } from 'react-router-dom';
-import StayBaeLogo from '../../assets/images/staybae.png';
+import { Link, useNavigate } from "react-router-dom";
+import StayBaeLogo from "../../assets/images/staybae.png";
 import {
   MagnifyingGlassIcon,
   HeartIcon,
   UsersIcon,
-} from '@heroicons/react/20/solid';
-import { useState } from 'react';
-import { DateRangePicker } from 'react-date-range';
+} from "@heroicons/react/20/solid";
+import { useState } from "react";
+import { DateRangePicker } from "react-date-range";
 
 //region images:
-import RegionFlexible from '../../assets/images/region-flexible.jpeg';
-import RegionUsa from '../../assets/images/region-usa.png';
-import RegionAsia from '../../assets/images/region-asia.png';
-import RegionEu from '../../assets/images/region-eu.png';
-import RegionAus from '../../assets/images/region-aus.png';
-import RegionSouthAmerica from '../../assets/images/region-south-america.png';
+import RegionFlexible from "../../assets/images/region-flexible.jpeg";
+import RegionUsa from "../../assets/images/region-usa.png";
+import RegionAsia from "../../assets/images/region-asia.png";
+import RegionEu from "../../assets/images/region-eu.png";
+import RegionAus from "../../assets/images/region-aus.png";
+import RegionSouthAmerica from "../../assets/images/region-south-america.png";
 
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 
 type Props = {
   setIsShowFavourites: (val: boolean) => void;
 };
 
 const Header = (props: Props) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [numberOfGuests, setNumberOfGuests] = useState<number>(1);
@@ -32,27 +32,25 @@ const Header = (props: Props) => {
   const selectionRange = {
     startDate,
     endDate,
-    key: 'selection',
+    key: "selection",
   };
 
   const navigate = useNavigate();
 
   const handleSelectedDate = (ranges: any) => {
-    console.log(ranges);
-
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
   };
 
   const resetInput = () => {
-    setSearchTerm('');
+    setSearchTerm("");
   };
 
   const handleSearch = () => {
-    setSearchTerm('');
+    setSearchTerm("");
     setShowRegions(false);
 
-    navigate('/search', {
+    navigate("/search", {
       replace: true,
       state: {
         location: searchTerm,
@@ -65,12 +63,12 @@ const Header = (props: Props) => {
 
   const handleRegionSearch = (region: string) => {
     setShowRegions(false);
-    setSearchTerm('');
+    setSearchTerm("");
 
     const endDate = new Date();
     endDate.setFullYear(new Date().getFullYear() + 10);
 
-    navigate('/search', {
+    navigate("/search", {
       replace: true,
       state: {
         region,
@@ -87,7 +85,7 @@ const Header = (props: Props) => {
 
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5">
-      <Link to={'/home'}>
+      <Link to={"/home"}>
         <div className="relative flex items-center h-10 cursor-pointer my-auto">
           <img
             src={StayBaeLogo}
@@ -136,7 +134,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch('Worldwide')}
+                onClick={() => handleRegionSearch("Worldwide")}
               >
                 <img
                   src={RegionFlexible}
@@ -149,7 +147,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch('United States')}
+                onClick={() => handleRegionSearch("United States")}
               >
                 <img
                   src={RegionUsa}
@@ -162,7 +160,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch('South America')}
+                onClick={() => handleRegionSearch("South America")}
               >
                 <img
                   src={RegionSouthAmerica}
@@ -175,7 +173,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch('Europe')}
+                onClick={() => handleRegionSearch("Europe")}
               >
                 <img
                   src={RegionEu}
@@ -188,7 +186,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch('Asia')}
+                onClick={() => handleRegionSearch("Asia")}
               >
                 <img
                   src={RegionAsia}
@@ -201,7 +199,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="flex flex-col items-center border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch('Australia')}
+                onClick={() => handleRegionSearch("Australia")}
               >
                 <img
                   src={RegionAus}
@@ -220,7 +218,7 @@ const Header = (props: Props) => {
           <DateRangePicker
             ranges={[selectionRange]}
             minDate={new Date()}
-            rangeColors={['#FD5861']}
+            rangeColors={["#FD5861"]}
             onChange={handleSelectedDate}
           />
 

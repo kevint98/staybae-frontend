@@ -1,3 +1,5 @@
+import { MarkerProps } from "@react-google-maps/api";
+
 interface PropertyType {
   _id?: string;
   city: string;
@@ -18,6 +20,8 @@ interface PropertyType {
   heroImg: string;
   images: string[];
   favourited?: boolean;
+  lat: number;
+  lon: number;
 }
 
 export default PropertyType;

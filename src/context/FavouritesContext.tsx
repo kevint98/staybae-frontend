@@ -31,10 +31,6 @@ export const FavouriteContextProvider = ({
     current.push(property);
 
     setUserFavourites(current);
-
-    // setUserFavourites((previousFavourites) => {
-    //   return previousFavourites.concat(property);
-    // });
   };
 
   const removePropertyFromFavourites = (id: string) => {
