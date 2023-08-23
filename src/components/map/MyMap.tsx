@@ -1,14 +1,9 @@
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { AxiosResponse } from "axios";
 import { useMemo, useState, useEffect } from "react";
-import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
 
 const MyMap = ({ data }: any) => {
-  //   const { data } = useSearchResults(startDate, endDate, searchLocation, region);
   const [markers, setMarkers] = useState<google.maps.LatLngLiteral[]>([]);
-
-  //   console.log(markers);
 
   useEffect(() => {
     if (data?.data) {
@@ -19,8 +14,6 @@ const MyMap = ({ data }: any) => {
       setMarkers(newMarkers);
     }
   }, [data]);
-
-  console.log(data);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
@@ -33,14 +26,12 @@ const MyMap = ({ data }: any) => {
     width: "100%",
   };
 
-  console.log(markers);
-
   return (
     <div className="wrapper h-96">
       {isLoaded && (
         <GoogleMap
           mapContainerStyle={myComponentStyle}
-          center={center}
+          center={markers[0]}
           zoom={8}
         >
           {markers.map((marker, idx: number) => (

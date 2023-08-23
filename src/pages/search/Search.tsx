@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom";
 import InfoCard from "src/components/cards/InfoCard";
 import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
-import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
-import { useEffect, useMemo, useState } from "react";
 import MyMap from "src/components/map/MyMap";
 
 const Search = () => {
