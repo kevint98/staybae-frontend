@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetchProperty } from "src/hooks/useFetchProperty";
 import useProgressiveImage from "src/hooks/useProgressiveImage";
@@ -16,11 +16,13 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   HeartIcon as NotFavouritedHeartIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
 import Rating from "src/components/rating/Rating";
 import LoadingImage from "src/assets/images/loading-image.gif";
 import useFavourite from "src/hooks/useFavourite";
 import { AxiosResponse } from "axios";
+import Places from "src/components/places/Places";
 
 const PropertyDetails = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -155,12 +157,12 @@ const PropertyDetails = () => {
             ))}
           </div>
         </div>
-        <div className="flex-row md:flex-col my-10 flex-grow md:inline-block hidden">
+        <div className="flex-row md:flex-col my-10 flex-grow md:inline-block hidden justify-between gap-y-1">
           <div className="ml-6 rounded-xl border-2 border-gray-200 shadow-md p-6 h-[350px]">
             <div className="flex justify-between">
               <p className="font-semibold text-lg">
                 &pound;{data?.data?.perNightPrice}{" "}
-                <span className="text-sm font-light">night</span>
+                <span className="text-sm font-light">/night</span>
               </p>
               {data?.data && (
                 <Rating
@@ -280,6 +282,12 @@ const PropertyDetails = () => {
             <span className="text-gray-400">
               Stay knowing you are fully protected.
             </span>
+          </div>
+        </div>
+        <div className="flex flex-row space-x-4">
+          <QuestionMarkCircleIcon className="h-10" />
+          <div className="flex flex-col space-y-3">
+            <Places data={data} />
           </div>
         </div>
       </div>
